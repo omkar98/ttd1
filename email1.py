@@ -7,7 +7,7 @@ import time
 
 while True:
   url = "https://online.tirupatibalaji.ap.gov.in/sdn/rest/v1/acc/get_availability?for=dashboard&location=TIRUMALA"
-
+  print(url)
   payload={}
   headers = {
     'authority': 'online.tirupatibalaji.ap.gov.in',
@@ -26,11 +26,12 @@ while True:
     'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Mobile Safari/537.36',
     'userid': '2459287'
   }
+  print("now making request")
   try:
     response = requests.request("GET", url, headers=headers, data=payload)
   except:
     print("Error from TTD")
-
+  print("made request")
   avl = (response.json().get('result').get('20230723').get('avl'))
   print(avl);
   message = 'Subject: {}\n\n{}'.format(json.dumps(response.json().get('result').get('20230723')), "Available for 23rd July")
