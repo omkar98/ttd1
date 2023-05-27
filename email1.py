@@ -5,6 +5,7 @@ import requests
 import json
 import time
 
+counter = 1
 while True:
   url = "https://online.tirupatibalaji.ap.gov.in/sdn/rest/v1/acc/get_availability?for=dashboard&location=TIRUMALA"
   print(url)
@@ -13,9 +14,9 @@ while True:
     'authority': 'online.tirupatibalaji.ap.gov.in',
     'accept': 'application/json',
     'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8,hi;q=0.7',
-    'authtoken': 'c55f2febd9afba21dcd8d4961eb41453edf40e531584038060',
+    'authtoken': 'edbe994e5459905930a8884e16e49892d16288f31639199834',
     'content-type': 'application/json',
-    'cookie': '_ga=GA1.5.834326753.1670903926; _gid=GA1.3.2036348688.1684908791; _gid=GA1.5.2036348688.1684908791; _ga=GA1.1.834326753.1670903926; user_id=2459287; authtoken=c55f2febd9afba21dcd8d4961eb41453edf40e531584038060; valid_till=2025-05-26 10:55:32; valid_till_in_utc=2025-05-26 05:25:32; mobileNum=7798576939; accesstype=; router=JPG; redirect_type=acc; flow_type=acc; _gat_UA-56816637-81=1; ticket_id=4916063; _ga_MT8JLQ6M96=GS1.1.1685076913.12.1.1685077307.0.0.0',
+    'cookie': '_ga=GA1.5.834326753.1670903926; _gid=GA1.5.2036348688.1684908791; _gid=GA1.3.1408227557.1685176566; _ga=GA1.1.834326753.1670903926; user_id=9441154; authtoken=edbe994e5459905930a8884e16e49892d16288f31639199834; valid_till=2026-05-27 14:37:08; valid_till_in_utc=2026-05-27 09:07:08; mobileNum=8669175196; _gat_UA-56816637-81=1; _ga_MT8JLQ6M96=GS1.1.1685176570.16.1.1685176693.0.0.0',
     'referer': 'https://online.tirupatibalaji.ap.gov.in/accommodation/slot-booking?flow=acc&flowIdentifier=acc',
     'sec-ch-ua': '"Google Chrome";v="113", "Chromium";v="113", "Not-A.Brand";v="24"',
     'sec-ch-ua-mobile': '?1',
@@ -24,7 +25,7 @@ while True:
     'sec-fetch-mode': 'cors',
     'sec-fetch-site': 'same-origin',
     'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Mobile Safari/537.36',
-    'userid': '2459287'
+    'userid': '9441154'
   }
   print("now making request")
   try:
@@ -53,3 +54,13 @@ while True:
     # terminating the session
     s.quit()
   time.sleep(10)
+  counter+=1
+  print(counter)
+  if counter == 10:
+    counter = 1
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+    s.starttls()
+    s.login("edu.omkar@gmail.com", "cxkgerjsjtutairg")
+    s.sendmail("sender_email_id", "edu.omkar1@gmail.com", "Service is Up")
+    print("sent email")
+    s.quit()
