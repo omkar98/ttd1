@@ -35,7 +35,7 @@ while True:
   avl = (response.json().get('result').get('20230723').get('avl'))
   print(avl);
   message = 'Subject: {}\n\n{}'.format(json.dumps(response.json().get('result').get('20230723')), "Available for 23rd July")
-  if(avl>=0):
+  if(avl>0):
     # creates SMTP session
     s = smtplib.SMTP('smtp.gmail.com', 587)
 
