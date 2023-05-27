@@ -53,10 +53,10 @@ while True:
 
     # terminating the session
     s.quit()
-  time.sleep(10)
+  time.sleep(120)
   counter+=1
   print(counter)
-  if counter == 21600:
+  if counter == 216:
     counter = 1
     s = smtplib.SMTP('smtp.gmail.com', 587)
     s.starttls()
