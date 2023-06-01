@@ -7,8 +7,8 @@ import time
 
 counter = 1
 while True:
+  print(counter)
   url = "https://online.tirupatibalaji.ap.gov.in/sdn/rest/v1/acc/get_availability?for=dashboard&location=TIRUMALA"
-  print(url)
   payload={}
   headers = {
     'authority': 'online.tirupatibalaji.ap.gov.in',
@@ -27,7 +27,6 @@ while True:
     'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Mobile Safari/537.36',
     'userid': '9441154'
   }
-  print("now making request")
   try:
     response = requests.request("GET", url, headers=headers, data=payload)
   except:
@@ -39,24 +38,18 @@ while True:
   if(avl>0):
     # creates SMTP session
     s = smtplib.SMTP('smtp.gmail.com', 587)
-
     # start TLS for security
     s.starttls()
-
     # Authentication
     s.login("edu.omkar@gmail.com", "cxkgerjsjtutairg")
-
-
-
     # sending the mail
     s.sendmail("sender_email_id", "edu.omkar1@gmail.com", message)
-
     # terminating the session
     s.quit()
-  time.sleep(120)
+  time.sleep(10)
   counter+=1
   print(counter)
-  if counter == 216:
+  if counter == 10:
     counter = 1
     s = smtplib.SMTP('smtp.gmail.com', 587)
     s.starttls()
