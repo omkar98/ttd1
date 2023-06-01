@@ -30,27 +30,28 @@ while True:
     response = requests.request("GET", url, headers=headers, data=payload)
   except:
     print("Error from TTD")
-  avl = (response.json().get('result').get('20230723').get('avl'))
-  message = 'Subject: {}\n\n{}'.format(json.dumps(response.json().get('result').get('20230723')), "Available for 23rd July")
-  if(avl>0):
-    # creates SMTP session
-    s = smtplib.SMTP('smtp.gmail.com', 587)
-    # start TLS for security
-    s.starttls()
-    # Authentication
-    s.login("edu.omkar@gmail.com", "cxkgerjsjtutairg")
-    # sending the mail
-    s.sendmail("sender_email_id", "edu.omkar1@gmail.com", message)
-    # terminating the session
-    s.quit()
-  time.sleep(100)
-  counter+=1
-  logger.info("counter: "+str(counter)+"Available: "+str(avl)) 
-  if counter == 100:
-    counter = 1
-    s = smtplib.SMTP('smtp.gmail.com', 587)
-    s.starttls()
-    s.login("edu.omkar@gmail.com", "cxkgerjsjtutairg")
-    s.sendmail("sender_email_id", "edu.omkar1@gmail.com", "Subject: Service is Up")
-    logger.info("Service Up Email is sent") 
-    s.quit()
+  if(not response.json().get('status') == 'fail'):
+    avl = (response.json().get('result').get('20230723').get('avl'))
+    message = 'Subject: {}\n\n{}'.format(json.dumps(response.json().get('result').get('20230723')), "Available for 23rd July")
+    if(avl>0):
+      # creates SMTP session
+      s = smtplib.SMTP('smtp.gmail.com', 587)
+      # start TLS for security
+      s.starttls()
+      # Authentication
+      s.login("edu.omkar@gmail.com", "cxkgerjsjtutairg")
+      # sending the mail
+      s.sendmail("sender_email_id", "edu.omkar1@gmail.com", message)
+      # terminating the session
+      s.quit()
+    time.sleep(60)
+    counter+=1
+    logger.info("counter: "+str(counter)+"Available: "+str(avl)) 
+    if counter == 100:
+      counter = 1
+      s = smtplib.SMTP('smtp.gmail.com', 587)
+      s.starttls()
+      s.login("edu.omkar@gmail.com", "cxkgerjsjtutairg")
+      s.sendmail("sender_email_id", "edu.omkar1@gmail.com", "Subject: Service is Up")
+      logger.info("Service Up Email is sent") 
+      s.quit()
