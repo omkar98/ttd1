@@ -47,7 +47,7 @@ while True:
     time.sleep(60)
     counter+=1
     logger.info("counter: "+str(counter)+"Available: "+str(avl)) 
-    if counter == 100:
+    if counter == 400:
       counter = 1
       s = smtplib.SMTP('smtp.gmail.com', 587)
       s.starttls()
