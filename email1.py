@@ -1,13 +1,12 @@
 import smtplib
-
-
+import logging 
 import requests
 import json
 import time
 
+logger=logging.getLogger() 
 counter = 1
 while True:
-  print(counter)
   url = "https://online.tirupatibalaji.ap.gov.in/sdn/rest/v1/acc/get_availability?for=dashboard&location=TIRUMALA"
   payload={}
   headers = {
@@ -31,9 +30,7 @@ while True:
     response = requests.request("GET", url, headers=headers, data=payload)
   except:
     print("Error from TTD")
-  print("made request")
   avl = (response.json().get('result').get('20230723').get('avl'))
-  print(avl);
   message = 'Subject: {}\n\n{}'.format(json.dumps(response.json().get('result').get('20230723')), "Available for 23rd July")
   if(avl>0):
     # creates SMTP session
@@ -48,12 +45,12 @@ while True:
     s.quit()
   time.sleep(100)
   counter+=1
-  print(counter)
+  logger.info("counter: "+counter+"Available: "+avl) 
   if counter == 100:
     counter = 1
     s = smtplib.SMTP('smtp.gmail.com', 587)
     s.starttls()
     s.login("edu.omkar@gmail.com", "cxkgerjsjtutairg")
-    s.sendmail("sender_email_id", "edu.omkar1@gmail.com", "Service is Up")
-    print("sent email")
+    s.sendmail("sender_email_id", "edu.omkar1@gmail.com", "Subject: Service is Up")
+    logger.info("Service Up Email is sent") 
     s.quit()
