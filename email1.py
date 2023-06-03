@@ -4,7 +4,6 @@ import requests
 import json
 import time
 
-logger=logging.getLogger() 
 counter = 1
 while True:
   url = "https://online.tirupatibalaji.ap.gov.in/sdn/rest/v1/acc/get_availability?for=dashboard&location=TIRUMALA"
@@ -44,14 +43,14 @@ while True:
       s.sendmail("sender_email_id", "edu.omkar1@gmail.com", message)
       # terminating the session
       s.quit()
-    time.sleep(60)
+    time.sleep(20)
     counter+=1
-    logger.info("counter: "+str(counter)+"Available: "+str(avl)) 
-    if counter == 400:
+    logging.info("counter: "+str(counter)+"Available: "+str(avl)) 
+    if counter == 1000:
       counter = 1
       s = smtplib.SMTP('smtp.gmail.com', 587)
       s.starttls()
       s.login("edu.omkar@gmail.com", "cxkgerjsjtutairg")
       s.sendmail("sender_email_id", "edu.omkar1@gmail.com", "Subject: Service is Up")
-      logger.info("Service Up Email is sent") 
+      logging.info("Service Up Email is sent") 
       s.quit()
