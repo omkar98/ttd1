@@ -43,10 +43,10 @@ while True:
       s.sendmail("sender_email_id", "edu.omkar1@gmail.com", message)
       # terminating the session
       s.quit()
-    time.sleep(20)
+    time.sleep(5)
     counter+=1
     logging.info("counter: "+str(counter)+"Available: "+str(avl)) 
-    if counter == 1000:
+    if counter == 300:
       counter = 1
       s = smtplib.SMTP('smtp.gmail.com', 587)
       s.starttls()
