@@ -5,8 +5,10 @@ import json
 import time
 
 counter = 1
+logging.basicConfig()
 while True:
   url = "https://online.tirupatibalaji.ap.gov.in/sdn/rest/v1/acc/get_availability?for=dashboard&location=TIRUMALA"
+  logger = logging.getLogger("Syslog")
   payload={}
   headers = {
     'authority': 'online.tirupatibalaji.ap.gov.in',
@@ -28,7 +30,7 @@ while True:
   try:
     response = requests.request("GET", url, headers=headers, data=payload)
   except:
-    print("Error from TTD")
+    logger.critical("ERROR from TTD") 
   if(not response.json().get('status') == 'fail'):
     avl = (response.json().get('result').get('20230723').get('avl'))
     message = 'Subject: {}\n\n{}'.format(json.dumps(response.json().get('result').get('20230723')), "Available for 23rd July")
@@ -45,12 +47,12 @@ while True:
       s.quit()
     time.sleep(5)
     counter+=1
-    logging.info("counter: "+str(counter)+"Available: "+str(avl)) 
+    logger.warning("counter: "+str(counter)+" | Available: "+str(avl)) 
     if counter == 300:
       counter = 1
       s = smtplib.SMTP('smtp.gmail.com', 587)
       s.starttls()
       s.login("edu.omkar@gmail.com", "cxkgerjsjtutairg")
       s.sendmail("sender_email_id", "edu.omkar1@gmail.com", "Subject: Service is Up")
-      logging.info("Service Up Email is sent") 
+      logger.warning("Service Up Email is sent") 
       s.quit()
