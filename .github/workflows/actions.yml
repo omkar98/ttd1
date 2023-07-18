@@ -23,5 +23,5 @@ jobs:
           pip install -r requirements.txt
           
       - name: execute py script # run email1.py
-        run: python email1.py
+        run: python3 email1.py
           
