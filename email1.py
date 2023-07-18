@@ -35,7 +35,6 @@ if __name__ == "__main__":
         response = requests.request("GET", url, headers=headers, data=payload)
     except:
         logger.critical("ERROR from TTD")
-        break
     if(not response.json().get('status') == 'fail'):
         avl = (response.json().get('result').get('20230723').get('avl'))
     if (avl==0): 
