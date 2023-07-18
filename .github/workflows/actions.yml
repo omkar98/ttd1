@@ -1,6 +1,14 @@
 name: run email1.py
 
 on:
+  workflow_dispatch:
+   inputs:
+    logLevel:
+      description: 'Log evel'
+      required: true
+      default: 'warning'
+    tags:
+     description: 'Test Scenario tags'
   schedule:
     - cron: '*/1 * * * *' # At 00:00 on Monday
 
