@@ -1,4 +1,4 @@
-name: run main.py
+name: run email1.py
 
 on:
   schedule:
@@ -23,5 +23,5 @@ jobs:
           pip install -r requirements.txt
           
       - name: execute py script # run email1.py
-        run: python main.py
+        run: python email1.py
           
