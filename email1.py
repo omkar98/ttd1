@@ -31,10 +31,12 @@ if __name__ == "__main__":
         'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Mobile Safari/537.36',
         'userid': '9441154'
       }
+      logger.warning("url: "+str(url)+" | payload: "+str(payload)+ "| headers: " +str(headers)) 
       try:
         response = requests.request("GET", url, headers=headers, data=payload)
       except:
-        logger.critical("ERROR from TTD") 
+        logger.critical("ERROR from TTD")
+        break
       if(not response.json().get('status') == 'fail'):
         avl = (response.json().get('result').get('20230723').get('avl'))
         if (avl==0): 
