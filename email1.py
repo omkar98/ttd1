@@ -33,6 +33,7 @@ if __name__ == "__main__":
     logger.warning("url: "+str(url)+" | payload: "+str(payload)+ "| headers: " +str(headers)) 
     try:
         response = requests.request("GET", url, headers=headers, data=payload)
+        logger.warning("response received: "+str(response))
     except:
         logger.critical("ERROR from TTD")
     if(not response.json().get('status') == 'fail'):
