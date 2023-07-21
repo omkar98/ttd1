@@ -25,7 +25,7 @@ if __name__ == "__main__":
   proceed = True
   try:
       for x in range(6):
-        response = requests.request("GET", url, headers=headers, data=payload)
+        response = requests.request("GET", url, headers=headers)
         logger.warning("response: "+str(response) + "Status Code is: "+str(response.status_code))
         print(response.text)
         if response.status_code != 200:
