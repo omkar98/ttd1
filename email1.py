@@ -31,12 +31,12 @@ if __name__ == "__main__":
         }
       proceed = True
       try:
-        response = requests.request("GET", url, headers=headers, data=payload)
-        logger.warning("response: "+str(response) + "Proceed is: "+str(proceed)) 
+          for x in range(6):
+            response = requests.request("GET", url, headers=headers, data=payload)
+            logger.warning("response: "+str(response) + "Proceed is: "+str(proceed)) 
       except:
         proceed = False
-        logger.critical("ERROR from TTD") 
-        logger.warning("response: "+str(response) + "Proceed is: "+str(proceed))
+        logger.critical("ERROR from TTD")
       if(proceed and not response.json().get('status') == 'fail'):
         avl1 = (response.json().get('result').get('20230723').get('avl'))
         avl2 = 0
