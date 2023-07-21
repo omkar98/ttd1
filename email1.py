@@ -20,7 +20,8 @@ if __name__ == "__main__":
       'content-type': 'application/json',
       'cookie': '_ga=GA1.5.1068875658.1682002300; _gid=GA1.5.1199907862.1689691573; _ga=GA1.1.1068875658.1682002300; _gat_UA-56816637-81=1; user_id=9441154; authtoken=16202e94375972563f5f563e2647eb58b690c22d-1245772922; valid_till=2024-07-21 10:24:32; valid_till_in_utc=2024-07-21 04:54:32; mobileNum=8669175196; _ga_MT8JLQ6M96=GS1.1.1689913461.25.1.1689913479.0.0.0',
       'referer': 'https://online.tirupatibalaji.ap.gov.in/accommodation/slot-booking?flow=acc&flowIdentifier=acc',
-      'userid': '9441154'
+      'userid': '9441154',
+      'User-Agent': 'request'
     }
   proceed = True
   try:
