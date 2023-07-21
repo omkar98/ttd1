@@ -12,7 +12,6 @@ if __name__ == "__main__":
   logger = logging.getLogger("Syslog")
   logger.warning("Inside Main")
   url = "https://online.tirupatibalaji.ap.gov.in/sdn/rest/v1/acc/get_availability?for=dashboard&location=TIRUMALA"
-  payload={}
   headers = {
       'authority': 'online.tirupatibalaji.ap.gov.in',
       'accept': 'application/json',
