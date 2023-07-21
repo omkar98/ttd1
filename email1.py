@@ -27,7 +27,10 @@ if __name__ == "__main__":
       try:
           for x in range(6):
             response = requests.request("GET", url, headers=headers, data=payload)
-            logger.warning("response: "+str(response) + "Proceed is: "+str(proceed)) 
+            logger.warning("response: "+str(response) + "Status Code is: "+str(response.status_code))
+            if response.status_code != 200:
+                proceed = False
+                
       except:
         proceed = False
         logger.critical("ERROR from TTD")
