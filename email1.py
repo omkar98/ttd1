@@ -29,11 +29,11 @@ if __name__ == "__main__":
           'sec-fetch-site': 'same-origin',
           'userid': '9441154'
         }
-      proceed = true
+      proceed = True
       try:
         response = requests.request("GET", url, headers=headers, data=payload)
       except Exception:
-        proceed = false
+        proceed = False
         logger.critical("ERROR from TTD") 
         logger.warning("response: "+str(response) + "Canot Proceed") 
         logger.warning(Exception) 
